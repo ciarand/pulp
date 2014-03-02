@@ -21,5 +21,8 @@
     "require-dev": {
         "phpspec/phpspec": "v2.0.0-RC4",
         "psy/psysh": "v0.1.1"
+    },
+    "config": {
+        "bin-dir": "./bin"
     }
 }
