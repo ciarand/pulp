@@ -1,0 +1,25 @@
+{
+    "name": "ciarand/pulp",
+    "description": "A PHP build system configured in PHP, based off GulpJS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ciaran Downey",
+            "email": "me@ciarand.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ciarand\\Pulp\\": "src/"
+        }
+    },
+    "require": {
+        "react/react": "~0.4.0",
+        "phing/phing": "~2.7.0",
+        "kriswallsmith/assetic": "~1.1.2"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "v2.0.0-RC4",
+        "psy/psysh": "v0.1.1"
+    }
+}
