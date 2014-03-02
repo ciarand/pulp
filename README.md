@@ -30,29 +30,33 @@ the same time, very easy to read and understand.
 
 While PHP has some at least one [really nice build system][phing], writing huge
 XML files is not a fun thing for me to do. So, on a whim, Pulp was born to
-alleviate some of the pain I felt. Here's a sample:
+alleviate some of the pain I felt. Here's a sample of what I think it should
+look like:
 
 [phing]: http://phing.info
 
 ```php
 <?php require "vendor/autoload.php";
 
-use Ciarand\Pulp\Manager as Pulp;
+$pulp    = new Ciarand\Pulp\Pulp;
+$assetic = $pulp->requirePlugin(Ciarand\Pulp\Plugins\Assetic::className());
+$sass    = $assetic->createFilter("ScssphpFilter");
 
-$pulp = new Pulp;
+$pulp->task("scss", [], function () use ($pulp, $sass) {
+    $pulp->src("**/*.scss")
+        ->pipe($sass(["enableCompass" => true]))
+        ->pipe($pulp->dest("./dest/"));
+});
 
 $pulp->task("default", ["scss"], function () use ($pulp) {
     $pulp->watch("{.,**}/*.scss", ["scss"]);
 });
 
-$pulp->task("scss", [], function () use ($pulp) {
-    $pulp->src("./assets/scss/**/*.scss")
-        ->pipe(SassPluginGoesHere())
-        ->pipe($pulp->dest("./dest/"));
-});
-
 $pulp->run();
 ```
+It takes 5 more lines, but each task is represented by roughly the same amount
+of code. Compare that to a Phing or Ant buildfile and you'll start to appreciate
+the brevity.
 
 Project goals
 -------------
