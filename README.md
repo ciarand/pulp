@@ -10,8 +10,8 @@ I got a chance to use Gulp on a personal project recently and fell in love with
 the API. It's clean, well constructed, and very easy to read. Here's a sample:
 
 ```javascript
-var gulp          = require("gulp"),
-    sass          = require("gulp-sass");
+var gulp = require("gulp"),
+    sass = require("gulp-sass");
 
 gulp.task("default", ["css"], function() {
     gulp.watch("./assets/scss/**/*.scss", ["css"]);
